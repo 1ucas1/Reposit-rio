@@ -1,7 +1,15 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export default function App() {
+	const [valor1, setValor1] = useState("20");
+	const [valor2, setValor2] = useState("3");
+	const[ resultado, setResultado]= useState();	
+	function somar(){
+		let r = parseFloat(valor1) + parseFloat(valor2);
+		setResultado(r);
+	}
+
   return (
     <View style={styles.container}>
       <Text style={styles.tituloinicial}>Aula de APP</Text>
@@ -10,19 +18,37 @@ export default function App() {
 		  </View>
 		  
 		  <View style={styles.bloco}>
-			  <Text>Valor 1:</Text>
-			  <TextInput style={styles.input}/>
+			  <Text>VALOR 1: </Text>
+			  <TextInput 
+			  style={styles.input}
+			  value={valor1}
+			  onChangeText={(valor) => setValor1(valor)}
+			  keyboardType="numeric"
+			  />
 		  </View>
 		  
 		  <View style={styles.bloco}>
-			  <Text>Valor 2:</Text>
-			  <TextInput style={styles.input}/>
+			  <Text>VALOR 2: </Text>
+			  <TextInput 
+			    style={styles.input}
+			    value={valor2}
+			    onChangeText={(valor) => setValor2(valor)}
+			    keyboardType="numeric"
+			  />
 		  </View>
 		  
 		  <View style={styles.bloco2}>
-			  <TouchableOpacity style={styles.botao}>
-		    		<Text style={styles.textoBotao}>Somar</Text>
-			  </TouchableOpacity>
+			    <TouchableOpacity 
+				style={styles.botao}
+				onPress={somar}
+				>
+		    		<Text style={styles.textoBotao}>SOMAR</Text>
+			    </TouchableOpacity>
+		  </View>
+		  <View style={styles.bloco}>
+				<Text style={styles.titulo}>
+					Resultado: {resultado}
+				</Text>
 		  </View>
     </View>
   );
@@ -33,6 +59,7 @@ const styles = StyleSheet.create({
     flex: 1,
     
   },
+  	
 	bloco:{
 		marginTop: 20,
 		width:'80%',
@@ -40,7 +67,7 @@ const styles = StyleSheet.create({
 		
 	},
 	bloco2:{
-		marginTop: 20,
+		marginTop: 18,
 		width:'80%',
 		marginLeft:'10%',
 		alignItems:'center',
@@ -52,12 +79,13 @@ const styles = StyleSheet.create({
 	input:{
 		borderWidth:2,
 		fontSize:20,
-		borderRadius:20,
+		borderRadius:10,
+		textAlign: 'center'
 	},
 	botao:{
 		backgroundColor:'#008000',
 		width: '28%',
-		borderRadius:20
+		borderRadius:5
 	},
 	textoBotao:{
 		color:'#fff',
