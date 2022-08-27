@@ -26,7 +26,7 @@ export default function App() {
 	}
 	
 	function esponeciacao(){
-		let r = Math.pow(parseFloat(valor1), parseFloat(valor2));
+		let r = math.pow(parseFloat(valor1), parseFloat(valor2));
 		setResultado(r);
 	}
 
